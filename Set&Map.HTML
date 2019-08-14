@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const s = new Set();
+        // [1,2,3,4,1,1,2,2,3,3,10].forEach(x=> s.add(x))
+        // console.log(s);    
+        // for(let i of s){
+        //     console.log(i);
+        // }
+        const set = new Set([1, 2, 5, 5, 5]);
+        document.write('例一', [...set] + "</br>")
+        document.write('例二', set.size + "</br>")
+        const set2 = new Set([
+            ['name', '张三'],
+            ['title', 'Author'],
+            ['age', '20']
+        ]);
+        console.log('值', set2.values())
+        console.log('键', set2.keys())
+        console.log('键值对', set2.entries())
+        const m = new Map();
+        const o = { name: '小明' };
+        m.set(o, 'content')
+        m.set('age', '20')
+        console.log([...m]);
+        const items = [
+            ['name', '张三'],
+            ['title', 'Author']
+        ];
+
+        const map = new Map();
+
+        items.forEach(
+            ([key, value]) => map.set(key, value)
+        );
+        console.log(items);
+
+    </script>
+</body>
+
+</html>
