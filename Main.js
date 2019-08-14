@@ -1,9 +1,11 @@
 // 初始化整个游戏的精灵,作为游戏开始的入口.
 import { ResourceLoader } from './js/base/ResourceLoader.js'
 import { Director } from "./js/Director.js";
-import { BackGround } from './js/runtime/BackGround.js'  
-import { Land } from './js/baruntimese/Land.js'  
 import { DataStore } from './js/base/DataStore.js'  
+import { BackGround } from './js/runtime/BackGround.js'  
+import { Land } from './js/runtime/Land.js'  
+import { UpPencil } from './js/runtime/UpPencil.js'  
+import { DownPencil } from './js/runtime/DownPencil.js'  
 
 export class Main{
     constructor() {
@@ -21,6 +23,9 @@ export class Main{
     }
     init() {
         this.dataStore.put('background',BackGround)
+        this.dataStore.put('land',Land)
+        this.dataStore.put('up',UpPencil)
+        this.dataStore.put('down',DownPencil)
          //初始化BackGround
         // let background = new BackGround(this.ctx, map.get('background'));
         // background.draw();

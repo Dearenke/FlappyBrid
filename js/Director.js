@@ -11,9 +11,8 @@ export class Director{
     }
     run() {
         this.dataStore.get('background').draw();
-        console.log(this.dataStore.get('background'));
-        console.log(this.dataStore.get('land'));
-        // this.dataStore.get('land').draw();
+        this.dataStore.get('land').draw();
+        requestAnimationFrame(()=>{this.run()})
     }
 
 }
