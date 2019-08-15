@@ -12,6 +12,7 @@ export class Main{
         this.canvas = document.getElementById('game_canvas');
         this.ctx = this.canvas.getContext('2d');
         this.dataStore = DataStore.getInstance();
+        this.director = Director.getIntance();
         const loader = ResourceLoader.create();
         loader.onLoaded (map => this.onResourceFirstLoaded(map));
     };
@@ -21,15 +22,17 @@ export class Main{
         this.dataStore.res = map;//长期保留在内存中 
         this.init();
     }
-    init() {
-        this.dataStore.put('background',BackGround)
-        this.dataStore.put('land',Land)
-        this.dataStore.put('up',UpPencil)
-        this.dataStore.put('down',DownPencil)
+    init() { 
+        this.director.isGameOver = false;
+        this.dataStore
+            .put('pencils', [])
+            .put('background', BackGround)
+            .put('land', Land)
          //初始化BackGround
         // let background = new BackGround(this.ctx, map.get('background'));
         // background.draw();
-        Director.getIntance().run();
+        this.director.createPencil();
+        this.director.run();
     }
 
 

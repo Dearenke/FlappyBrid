@@ -12,7 +12,7 @@ export class ResourceLoader{
     }
     //确保图片都加载完毕了 记录
     onLoaded(callback) {
-        console.log('进来了onLoaded');
+        console.log('记录图片加载');
         let loadedCount = 0;
         for (let value of this.map.values()) {
             value.onload = () => {

@@ -25,6 +25,9 @@ export class DataStore{
         return this.map.get(key);
     }
     destory() {
-        
+        //清零内存和精灵
+        for (let value of this.map.values()) {
+            value = null;
+        }
     }
 }
