@@ -1,13 +1,13 @@
 // 精灵的基类,负责初始化精灵加载的资源的大小以及位置.
 import { DataStore } from './DataStore.js'
 export class Sprite{
-    constructor(img = null,//要绘制的图片对象
-                srcX = 0,// 剪裁的X坐标
-                srcY = 0,// 剪裁的Y坐标
-                srcW = 0,// 剪裁的宽度
-                srcH = 0,// 剪裁的高度
-                x = 0, y = 0,//资源在canvas上的摆放位置
-                width = 0 , height = 0) {//检查完后,要使用的宽度和大小
+    constructor(img = null,//默认值
+                srcX = 0,// 
+                srcY = 0,// 
+                srcW = 0,// 
+                srcH = 0,// 
+                x = 0, y = 0,//
+                width = 0 , height = 0) {//
         this.dataStore = DataStore.getInstance()            
         this.ctx = this.dataStore.ctx;
         this.img = img;//要绘制的图片对象
@@ -36,7 +36,7 @@ export class Sprite{
     static getImage(key) {
         return DataStore.getInstance().res.get(key);
     } 
-
+//动画循环 每秒60帧 60次
     draw(img = this.img,
         srcX = this.srcX,
         srcY = this.srcY,

@@ -35,7 +35,21 @@ export class Main{
         // let background = new BackGround(this.ctx, map.get('background'));
         // background.draw();
         this.director.createPencil();
-        this.director.run();
+        this.director.run();//运行导演的所有方法
+        this.registerEvent();
+    }
+    registerEvent() {
+        this.canvas.addEventListener('touchstart', (e) => {
+            //阻止事件冒泡
+            e.preventDefault();
+            if (this.director.isGameOver) {
+                console.log('游戏开始');
+                this.init();
+            } else {
+                this.director.birdsEvent();
+            }
+            //箭头函数的this本质是Main类 this是指向外部的
+        })
     }
 
 
