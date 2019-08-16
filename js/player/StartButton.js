@@ -1,3 +1,5 @@
-export class StartButton{
+import { Sprite } from "../base/Sprite.js";
+
+export class StartButton extends Sprite{
     
 }
