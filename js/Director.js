@@ -30,7 +30,7 @@ export class Director{
 
     //判断小鸟是否和铅笔撞击
     static isStrike(bird, pencil) {
-        const strike = false;
+        let strike = false;
         if (bird.top > pencil.bottom ||
             bird.bottom < pencil.top ||
             bird.left > pencil.right ||
@@ -68,7 +68,6 @@ export class Director{
                 right: pencil.x + pencil.width
             };
             if (Director.isStrike(birdsBorder, pencilsBorder)) {
-                console.log('游戏结束');
                 this.isGameOver = true;
                 return;
             }
