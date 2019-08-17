@@ -99,9 +99,10 @@ export class Director{
             let timer = requestAnimationFrame(() => { this.run() })
             this.dataStore.put('timer', timer);
         } else {
+            console.log('游戏结束');
+            this.dataStore.get('startButton').draw();
               // 保证浏览器不会有额外的线程执行动画
             cancelAnimationFrame(this.dataStore.get('timer'));
-            console.log('游戏结束');
         }
        
     }

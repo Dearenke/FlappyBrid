@@ -30,6 +30,7 @@ export class Main{
             .put('background', BackGround)
             .put('land', Land)
             .put('birds', Birds)
+            .put('startButton',StartButton)
             // .put('startButton',StartButton)
          //初始化BackGround
         // let background = new BackGround(this.ctx, map.get('background'));

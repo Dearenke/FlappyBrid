@@ -59,38 +59,6 @@ export class Sprite{
         )
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // let image = new Image();
 // image.src = '../resource/background.png';
 // image.onload = () => {
