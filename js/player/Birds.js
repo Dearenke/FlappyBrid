@@ -1,7 +1,10 @@
 import { Sprite } from "../base/Sprite.js";
+import { DataStore } from "../base/DataStore.js";
 //循环渲染三只小鸟,其实是    循环渲染图片的三个部分（canvas特性） 不用精灵图(可以省去resource 和resourceloader)是为了提高开发效率 
 export class Birds extends Sprite{
     constructor() {
+        const ctx = DataStore.getInstance();
+        console.log('this.ctx',ctx );
         const image = Sprite.getImage('birds');
         super(image,
             0, 0,
