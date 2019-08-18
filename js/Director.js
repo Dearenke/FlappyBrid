@@ -46,6 +46,7 @@ export class Director{
         const birds = this.dataStore.get('birds');
         const land = this.dataStore.get('land');
         const pencils = this.dataStore.get('pencils');
+        const score = this.dataStore.get('score');
         if (birds.birdsY[0] + birds.clippingHeight[0] >= land.y) {
             this.isGameOver = true;
             return;
@@ -72,6 +73,12 @@ export class Director{
                 return;
             }
         }
+        console.log(birds.birdsX[0]);
+        //计分器逻辑
+        if(birds.birdsX[0] > pencils[0].x + pencils[0].width && score.isScore == true){
+            score.isScore = false;
+            score.scoreNumber += 10 ;
+        } 
         
     }
     //运行所有的方法
@@ -85,6 +92,7 @@ export class Director{
                 //将数组的第一个元素推出去,数组个数减一.
                 pencils.shift();
                 pencils.shift();
+                this.dataStore.get('score').isScore = true;
             }
             if (pencils[0].x < (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
                 this.createPencil();
@@ -96,6 +104,7 @@ export class Director{
             this.dataStore.get('land').draw();
             //requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行
             this.dataStore.get('birds').draw();
+            this.dataStore.get('score').draw();
             let timer = requestAnimationFrame(() => { this.run() })
             this.dataStore.put('timer', timer);
         } else {

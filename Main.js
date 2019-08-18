@@ -6,6 +6,7 @@ import { BackGround } from './js/runtime/BackGround.js'
 import { Land } from './js/runtime/Land.js'  
 import { Birds } from './js/player/Birds.js';
 import { StartButton } from './js/player/StartButton.js';
+import { Score } from './js/player/Score.js';
 
 
 export class Main{
@@ -30,7 +31,8 @@ export class Main{
             .put('background', BackGround)
             .put('land', Land)
             .put('birds', Birds)
-            .put('startButton',StartButton)
+            .put('startButton', StartButton)
+            .put('score',Score)
             // .put('startButton',StartButton)
          //初始化BackGround
         // let background = new BackGround(this.ctx, map.get('background'));

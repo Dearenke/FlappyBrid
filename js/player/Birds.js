@@ -47,7 +47,6 @@ export class Birds extends Sprite{
             this.birdsY[i] = this.y[i] + offsetY;
         }
         this.time++;
-        console.log('test====',this.y[0],this.birdsY[0]);
         //渲染小鸟
         super.draw(
             this.img,
