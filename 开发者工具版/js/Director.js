@@ -56,7 +56,7 @@ export class Director{
             top: birds.birdsY[0],
             bottom: birds.birdsY[0] + birds.clippingHeight[0],
             left: birds.birdsX[0],
-            right: birds.birdsX[0] + birds.clippingWidth[0]
+          right: birds.birdsX[0] + birds.clippingWidth[0]
         };
         //铅笔边界模型
         const length = pencils.length

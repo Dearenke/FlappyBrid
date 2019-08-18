@@ -11,7 +11,8 @@ import { Score } from './js/player/Score.js';
 
 export class Main{
     constructor() {
-        this.canvas = document.getElementById('game_canvas');
+      //区别1 ：document.getElementById('game_canvas') ==> wx.createCanvas()
+        this.canvas = wx.createCanvas();
         this.ctx = this.canvas.getContext('2d');
         this.dataStore = DataStore.getInstance();
         this.director = Director.getIntance();
@@ -31,7 +32,7 @@ export class Main{
             .put('background', BackGround)
             .put('land', Land)
             .put('birds', Birds)
-            .put('startButton', StartButton)
+            // .put('startButton', StartButton)
             .put('score',Score)
             // .put('startButton',StartButton)
          //初始化BackGround
