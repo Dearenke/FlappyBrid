@@ -4,6 +4,7 @@ import { DownPencil } from './runtime/DownPencil.js';
 export class Director{
     constructor() {
         this.dataStore = DataStore.getInstance();
+        // console.log('让我看看你',DataStore.getInstance());
         //初始化speed;
         this.moveSpeed = 2;
     }
@@ -14,8 +15,8 @@ export class Director{
         return Director.instance;
     }
     createPencil() {
-        const minTop = window.innerHeight / 8;
-        const maxTop = window.innerHeight / 2;
+        const minTop = DataStore.getInstance().canvas.height / 8;
+        const maxTop = DataStore.getInstance().canvas.height / 2;
         const top = minTop + Math.random() * (maxTop - minTop);
         this.dataStore.get('pencils').push(new UpPencil(top));
         this.dataStore.get('pencils').push(new DownPencil(top));
@@ -41,6 +42,17 @@ export class Director{
         //false的话返回true 继续运行
         return !strike
     }
+    //震动
+    vibrateShort(){
+      wx.vibrateShort({
+        success: () => {
+          console.log('震动成功');
+        },
+        fail: () => {
+          console.log('失败')
+        }
+      })
+    }
     //判断小鸟是否撞击地板和铅笔
     check() {
         const birds = this.dataStore.get('birds');
@@ -48,6 +60,7 @@ export class Director{
         const pencils = this.dataStore.get('pencils');
         const score = this.dataStore.get('score');
         if (birds.birdsY[0] + birds.clippingHeight[0] >= land.y) {
+          this.vibrateShort();
             this.isGameOver = true;
             return;
         }
@@ -70,10 +83,10 @@ export class Director{
             };
             if (Director.isStrike(birdsBorder, pencilsBorder)) {
                 this.isGameOver = true;
+              this.vibrateShort();
                 return;
             }
         }
-        console.log(birds.birdsX[0]);
         //计分器逻辑
         if(birds.birdsX[0] > pencils[0].x + pencils[0].width && score.isScore == true){
             score.isScore = false;
@@ -94,7 +107,7 @@ export class Director{
                 pencils.shift();
                 this.dataStore.get('score').isScore = true;
             }
-            if (pencils[0].x < (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
+            if (pencils[0].x < (DataStore.getInstance().canvas.width - pencils[0].width) / 2 && pencils.length === 2) {
                 this.createPencil();
             }
             //forEach三个参数 数组元素,角标,数组本身
@@ -112,6 +125,7 @@ export class Director{
             this.dataStore.get('startButton').draw();
               // 保证浏览器不会有额外的线程执行动画
             cancelAnimationFrame(this.dataStore.get('timer'));
+            wx.triggerGC();
         }
        
     }

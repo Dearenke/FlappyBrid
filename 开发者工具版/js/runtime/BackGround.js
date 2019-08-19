@@ -1,4 +1,5 @@
 import { Sprite } from '../base/Sprite.js';
+import { DataStore } from '../base/DataStore.js';
 //根据Sprite创建出一个名为BackGround的类
 export class BackGround extends Sprite{
     constructor() {
@@ -8,7 +9,7 @@ export class BackGround extends Sprite{
             0, 0,//剪裁的位置
             image.width, image.height, //剪裁多少
             0, 0,//放置的位置
-            window.innerWidth, window.innerHeight//使用多少
+            DataStore.getInstance().canvas.width, DataStore.getInstance().canvas.height//使用多少
         )
     }
 }   

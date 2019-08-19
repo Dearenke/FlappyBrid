@@ -4,7 +4,6 @@ import { DataStore } from "../base/DataStore.js";
 export class Birds extends Sprite{
     constructor() {
         const ctx = DataStore.getInstance();
-        console.log('this.ctx',ctx );
         const image = Sprite.getImage('birds');
         super(image,
             0, 0,
@@ -20,9 +19,9 @@ export class Birds extends Sprite{
         this.clippingWidth = [34, 34, 34];
         this.clippingHeight = [24, 24, 24];
         //const 对外不可见
-        const birdX = window.innerWidth / 4;//单只小鸟初始X坐标 
+        const birdX = DataStore.getInstance().canvas.width / 4;//单只小鸟初始X坐标 
         this.birdsX = [birdX, birdX, birdX];//三只小鸟初始X坐标
-        this.birdY = window.innerHeight / 2;//初始Y坐标
+        this.birdY = DataStore.getInstance().canvas.height / 2;//初始Y坐标
         this.birdsY = [this.birdY, this.birdY, this.birdY];
         this.y = [this.birdY, this.birdY, this.birdY];//每只小鸟的Y坐标
         //判断小鸟属于第几只

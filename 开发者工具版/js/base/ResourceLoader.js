@@ -9,6 +9,7 @@ export class ResourceLoader{
             image.src = value;
             this.map.set(key,image)
         }
+
     }
     //确保图片都加载完毕了 记录
     onLoaded(callback) {

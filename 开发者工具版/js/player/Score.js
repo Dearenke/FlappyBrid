@@ -9,11 +9,11 @@ export class Score{
     }
     draw() {
         this.ctx.font = '25px Arial';
-        this.ctx.fillStyle = '#ffcbeb';
+        this.ctx.fillStyle = 'red';
         this.ctx.fillText(
             this.scoreNumber,
-            window.innerWidth / 2,
-            window.innerHeight / 18,
+            DataStore.getInstance().canvas.width / 16,
+            DataStore.getInstance().canvas.height / 15,
             1000
         )
     }

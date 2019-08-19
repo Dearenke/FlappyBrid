@@ -7,6 +7,7 @@ import { Land } from './js/runtime/Land.js'
 import { Birds } from './js/player/Birds.js';
 import { StartButton } from './js/player/StartButton.js';
 import { Score } from './js/player/Score.js';
+import { ApiExamples } from './js/ApiExamples.js';
 
 
 export class Main{
@@ -15,14 +16,31 @@ export class Main{
         this.canvas = wx.createCanvas();
         this.ctx = this.canvas.getContext('2d');
         this.dataStore = DataStore.getInstance();
+        this.dataStore.Test = '这里测试看看有用吗';
+        this.dataStore.Test2 = '这里测试看看有用吗';
+        this.dataStore.Test3 = '这里测试看看有用吗';
         this.director = Director.getIntance();
-        const loader = ResourceLoader.create();
-        loader.onLoaded (map => this.onResourceFirstLoaded(map));
+      const loader = ResourceLoader.create();
+        //把属性循环到
+      loader.onLoaded(map => this.onResourceFirstLoaded(map));
     };
     
-    onResourceFirstLoaded(map){
+    createBackgroundMusic(){
+      const bgm = wx.createInnerAudioContext();
+      bgm.autoplay = true;
+      bgm.loop = true;
+      bgm.src = 'audio/bgm.mp3';
+    };
+  onResourceFirstLoaded(map) {
+      //给DataStore实例添加属性
+        this.dataStore.canvas = wx.createCanvas();
         this.dataStore.ctx = this.ctx;//长期保留在内存中,把它放在类变量中,永远保存
         this.dataStore.res = map;//长期保留在内存中 
+        this.dataStore['自己添加的属性'] = {'真的假的':'是真的'};
+        this.createBackgroundMusic();
+        const example = new ApiExamples();
+        example.getInfo();
+        example.getSetting();
         this.init();
     }
     init() { 
@@ -32,7 +50,7 @@ export class Main{
             .put('background', BackGround)
             .put('land', Land)
             .put('birds', Birds)
-            // .put('startButton', StartButton)
+            .put('startButton', StartButton)
             .put('score',Score)
             // .put('startButton',StartButton)
          //初始化BackGround
@@ -43,18 +61,15 @@ export class Main{
         this.registerEvent();
     }
     registerEvent() {
-        this.canvas.addEventListener('touchstart', (e) => {
-            //阻止事件冒泡
-            e.preventDefault();
-            if (this.director.isGameOver) {
-                console.log('游戏开始');
-                this.init();
-            } else {
-                this.director.birdsEvent();
-            }
+        wx.onTouchStart(()=>{
+          //阻止事件冒泡
+          if (this.director.isGameOver) {
+            console.log('游戏开始');
+            this.init();
+          } else {
+            this.director.birdsEvent();
+          }
             //箭头函数的this本质是Main类 this是指向外部的
         })
     }
-
-
 }
