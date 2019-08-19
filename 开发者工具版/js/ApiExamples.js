@@ -21,10 +21,30 @@ export class ApiExamples {
     })
   };
   getSetting(){
-    wx.getSetting({
-    success: res=> {
-      console.log(res);
-    }
-  })
-}
-}
+      wx.getSetting({
+      success: res=> {
+        console.log(res);
+      }
+    })
+  };
+  httpExample() {
+    // wx.request({
+    //   url: 'http://127.0.0.1:8181/',
+    //   method: 'GET',
+    //   success: (res)=>{
+    //     console.log(res);
+    //     //根据服务器的指示做相应的事件
+    //   }
+    // })
+
+    wx.request({
+      url: 'http://127.0.0.1:8181/',
+      method: 'POST',
+      data: {name:'李晨',age:'20'},
+      success: (res)=>{
+        console.log(res);
+        //根据服务器的指示做相应的事件
+      }
+    })
+  }
+};

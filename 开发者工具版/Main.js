@@ -40,7 +40,8 @@ export class Main{
         this.createBackgroundMusic();
         const example = new ApiExamples();
         example.getInfo();
-        example.getSetting();
+    example.getSetting();
+    example.httpExample();
         this.init();
     }
     init() { 
