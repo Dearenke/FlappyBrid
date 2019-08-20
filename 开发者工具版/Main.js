@@ -39,9 +39,11 @@ export class Main{
         this.dataStore['自己添加的属性'] = {'真的假的':'是真的'};
         this.createBackgroundMusic();
         const example = new ApiExamples();
-        example.getInfo();
-    example.getSetting();
-    example.httpExample();
+        // example.getInfo();
+        // example.getSetting();
+        // example.httpExample();
+        // example.socketExample();
+        example.downLoad();
         this.init();
     }
     init() { 
